@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, getByRole } from '@testing-library/react';
 import App from './App';
 
 //always use roles when possible for accesibility
@@ -22,7 +22,28 @@ test('button has correct initial color', () => {
     expect(colorButton.textContent).toBe('Change to red');
 });
 
-test('button turns blue when clicked', () => {
+test('initial conditions', () => {
     render(<App />);
-    const colorButton = screen.getByRole('button', { name: 'Change to Blue' });
-});
+
+    //check button starts out enabled
+    const colorButton = screen.getByRole('button', { name: 'Change to blue' });
+    expect(colorButton).toBeEnabled();
+
+    const checkBox = screen.getByRole('checkbox');
+    expect(checkBox).not.toBeChecked();
+
+    //check that checkbox starts out unchecked
+})
+
+test('checkbox disables/enables button', () => {
+    render(<App />);
+
+    const checkBox = screen.getByRole('checkbox');
+    const colorButton = screen.getByRole('button', {name: 'Change to blue' });
+
+    fireEvent.click(checkBox);  
+    expect(colorButton).toBeDisabled();
+
+    fireEvent.click(checkBox);
+    expect(colorButton).toBeEnabled();
+})
