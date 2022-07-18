@@ -8,27 +8,27 @@ import App, { replaceCamelWithSpaces } from './App';
 test('button has correct initial color', () => {
     render(<App />);
 
-    //find an element with a role of button and atext of 'Change to blue'
-    const colorButton = screen.getByRole('button', { name: 'Change to blue' });
+    //find an element with a role of button and atext of 'Change to MidnightBlue'
+    const colorButton = screen.getByRole('button', { name: 'Change to Midnight Blue' });
 
-    //expect the background clor to be red
-    expect(colorButton).toHaveStyle({ backgroundColor: 'red' })
+    //expect the background clor to be MediumVioletRed
+    expect(colorButton).toHaveStyle({ backgroundColor: 'MediumVioletRed' })
 
     //click button
     fireEvent.click(colorButton);
 
-    //expect the background to be blue
-    expect(colorButton).toHaveStyle({ backgroundColor: 'blue' });
+    //expect the background to be MidnightBlue
+    expect(colorButton).toHaveStyle({ backgroundColor: 'Midnight Blue' });
 
-    //expect the button text to change to 'Change to Red'
-    expect(colorButton.textContent).toBe('Change to red');
+    //expect the button text to change to 'Change to MediumVioletRed'
+    expect(colorButton.textContent).toBe('Change to Medium Violet Red');
 });
 
 test('initial conditions', () => {
     render(<App />);
 
     //check button starts out enabled
-    const colorButton = screen.getByRole('button', { name: 'Change to blue' });
+    const colorButton = screen.getByRole('button', { name: 'Change to Midnight Blue' });
     expect(colorButton).toBeEnabled();
 
     const checkBox = screen.getByRole('checkbox', { name: 'Disable button' });
@@ -41,7 +41,7 @@ test('checkbox disables/enables button', () => {
     render(<App />);
 
     const checkBox = screen.getByRole('checkbox', { name: 'Disable button' });
-    const colorButton = screen.getByRole('button', { name: 'Change to blue' });
+    const colorButton = screen.getByRole('button', { name: 'Change to Midnight Blue' });
 
     fireEvent.click(checkBox);
     expect(colorButton).toBeDisabled();
@@ -50,11 +50,11 @@ test('checkbox disables/enables button', () => {
     expect(colorButton).toBeEnabled();
 });
 
-test('Disabled button is gray, reverts to red', () => {
+test('Disabled button is gray, reverts to MediumVioletRed', () => {
     render(<App />);
     const checkbox = screen.getByRole('checkbox', { name: 'Disable button' });
     const colorButton = screen.getByRole('button', {
-        name: 'Change to blue',
+        name: 'Change to Midnight Blue',
     });
 
     // disable button
@@ -63,16 +63,16 @@ test('Disabled button is gray, reverts to red', () => {
 
     // re-enable button
     fireEvent.click(checkbox);
-    expect(colorButton).toHaveStyle('background-color: red');
+    expect(colorButton).toHaveStyle('background-color: MediumVioletRed');
 });
 
-test('Disabled button is gray, reverts to blue', () => {
+test('Disabled button is gray, reverts to MidnightBlue', () => {
     render(<App />);
     const checkbox = screen.getByRole('checkbox', { name: 'Disable button' },);
-    const colorButton = screen.getByRole('button', { name: 'Change to blue' },);
+    const colorButton = screen.getByRole('button', { name: 'Change to Midnight Blue' },);
 
 
-    // change button to blue
+    // change button to MidnightBlue
     fireEvent.click(colorButton);
 
     // disable button
@@ -81,7 +81,7 @@ test('Disabled button is gray, reverts to blue', () => {
 
     // re-enable button
     fireEvent.click(checkbox);
-    expect(colorButton).toHaveStyle('background-color: blue');
+    expect(colorButton).toHaveStyle('background-color: MidnightBlue');
 });
 
 //function test (describe is used to group tests)
