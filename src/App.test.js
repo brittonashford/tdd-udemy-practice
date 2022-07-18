@@ -1,8 +1,9 @@
 import { render, screen, fireEvent, getByRole } from '@testing-library/react';
-import { renderMatches } from 'react-router';
-import App from './App';
+import App, { replaceCamelWithSpaces } from './App';
 
 //always use roles when possible for accesibility
+//look up matcher syntax on jest-dom documentation
+//look up roles on W3C
 
 test('button has correct initial color', () => {
     render(<App />);
@@ -82,3 +83,16 @@ test('Disabled button is gray, reverts to blue', () => {
     fireEvent.click(checkbox);
     expect(colorButton).toHaveStyle('background-color: blue');
 });
+
+//function test (describe is used to group tests)
+describe('spaces before camel-case capital letters', () => {
+    test('Works for no inner capital letters', () =>{
+        expect(replaceCamelWithSpaces('Red')).toBe('Red');
+    });
+    test('Works for one inner capital letter', () => {
+        expect(replaceCamelWithSpaces('MidnightBlue')).toBe('Midnight Blue');
+    });
+    test('Works for multiple inner capital letters', () => {
+        expect(replaceCamelWithSpaces('MediumVioletRed')).toBe('Medium Violet Red');
+    });
+})
