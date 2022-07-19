@@ -2,7 +2,7 @@ import { render, screen, fireEvent, getByRole } from '@testing-library/react';
 import App, { replaceCamelWithSpaces } from './App';
 
 //always use roles when possible for accesibility
-//look up matcher syntax on jest-dom documentation
+//look up matcher and assertion syntax on jest-dom documentation
 //look up roles on W3C
 
 test('button has correct initial color', () => {
@@ -21,7 +21,7 @@ test('button has correct initial color', () => {
     expect(colorButton).toHaveStyle({ backgroundColor: 'Midnight Blue' });
 
     //expect the button text to change to 'Change to MediumVioletRed'
-    expect(colorButton.textContent).toBe('Change to Medium Violet Red');
+    expect(colorButton).toHaveTextContent('Change to Medium Violet Red');
 });
 
 test('initial conditions', () => {
@@ -84,7 +84,7 @@ test('Disabled button is gray, reverts to MidnightBlue', () => {
     expect(colorButton).toHaveStyle('background-color: MidnightBlue');
 });
 
-//function test (describe is used to group tests)
+//unit testing function (describe is used to group tests)
 describe('spaces before camel-case capital letters', () => {
     test('Works for no inner capital letters', () =>{
         expect(replaceCamelWithSpaces('Red')).toBe('Red');
